@@ -2,6 +2,7 @@
 For hosting amateur discord bots written in python using discord.py
 
 **Files**:
+
 bot.py -> main bot script
 
 scr.py -> live scraping and updating -- main script
@@ -15,5 +16,6 @@ data.csv -> csv database containing 2k19 batch data
 map.jpg -> DTU map
 
 **Instructions**:
+
 Run bot.py
 
