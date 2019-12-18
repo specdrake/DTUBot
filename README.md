@@ -2,7 +2,7 @@
 For hosting amateur discord bots written in python using discord.py
 
 **Files**:
-bot.py -> main bot script
+bot.py -> main bot script\n
 scr.py -> live scraping and updating -- main script
 tlnk.txt -> tab4 links
 mlnk.txt -> marquee links
