@@ -1,5 +1,4 @@
 import discord
-from dotenv import load_dotenv
 from discord.ext import commands
 from discord.ext.commands import has_permissions
 import os
@@ -7,11 +6,10 @@ from os import system
 import random
 import csv
 
-load_dotenv()
 client = commands.Bot(command_prefix = ".")
 client.remove_command('help')
-TOKEN = os.getenv('DISCORD_TOKEN')
-GUILD = os.getenv('DISCORD_GUILD')
+TOKEN = "NTA1MDk2NTgzMzY1NTI1NTI0.XfdoDg.Ho1nf_kLBbR-D6jHsH20H0O1h2A"
+GUILD = "A1"
 @client.event
 async def on_ready():
     await client.change_presence(activity=discord.Game(name=".help"))
