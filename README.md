@@ -1,4 +1,4 @@
-# discordbots
+# DTUBot
 For hosting an amateur discord bot written in python using discord.py
 
 **Files**:
