@@ -1,5 +1,5 @@
 # discordbots
-For hosting amateur discord bots written in python using discord.py
+For hosting an amateur discord bot written in python using discord.py
 
 **Files**:
 
