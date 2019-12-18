@@ -8,7 +8,7 @@ import csv
 
 client = commands.Bot(command_prefix = ".")
 client.remove_command('help')
-TOKEN = "NTA1MDk2NTgzMzY1NTI1NTI0.XfdoDg.Ho1nf_kLBbR-D6jHsH20H0O1h2A"
+TOKEN = "NTA1MDk2NTgzMzY1NTI1NTI0.XfoDVg.WoAi8ujKDe7i9ksrS1BMU3z_B9A"
 GUILD = "A1"
 @client.event
 async def on_ready():
