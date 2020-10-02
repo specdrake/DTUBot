@@ -1,5 +1,5 @@
 # DTUBot
-A discord bot written in python using discord.py framework using bs4 library for web scraping and csv for retrieving data from a simple csv database.
+For hosting an amateur discord bot written in python using discord.py
 
 **Files**:
 
@@ -7,9 +7,9 @@ bot.py -> main bot script
 
 scr.py -> live scraping and updating -- main script
 
-tlnk.txt -> tab4 links -- recent updates
+tlnk.txt -> tab4 links
 
-mlnk.txt -> marquee links -- recent updates
+mlnk.txt -> marquee links
 
 data.csv -> csv database containing 2k19 batch data
 

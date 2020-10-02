@@ -5,11 +5,12 @@ import os
 from os import system
 import random
 import csv
+from googlesearch import search
 
 client = commands.Bot(command_prefix = ".")
 client.remove_command('help')
 TOKEN = open('tok', 'r').read().strip()
-GUILD = "A1"
+GUILD = 'A1'
 @client.event
 async def on_ready():
     await client.change_presence(activity=discord.Game(name=".help"))
@@ -64,7 +65,7 @@ async def mnews(ctx, x=5):
         await ctx.send(f'{i+1}) {lm[i]}')
 
 @client.command() 
-async def search(ctx, *, name):
+async def search1(ctx, *, name):
     reader = csv.reader(open('data.csv', 'r'), delimiter=',')
     cnt = 0
     tmr = False
@@ -90,7 +91,120 @@ async def search(ctx, *, name):
                     ofile.write(f'{cnt}) {row[1]}\t{row[2]}\t{row[3]}\t{row[4]}\n')
         ofile.close()
         await ctx.send(file=discord.File('tmr.txt'))
-        
+
+@client.command()
+async def cg(ctx, *, name):
+    reader = csv.reader(open('resw.csv', 'r'), delimiter=',')
+    cnt = 0
+    tmr = False
+    for row in reader:
+        if any(row):
+            if name.lower() in row[3].lower():
+                cnt += 1
+                if cnt == 1:
+                    await ctx.send(f'Here you go:\n')
+                await ctx.send(f'{cnt}) {row[3]}\t{row[2]}\t{row[1]}')
+                if cnt == 10:
+                    tmr = True
+                    break
+
+    await ctx.send(f'Found {cnt} results!!!')
+    if tmr == True:
+        await ctx.send("Uploading more in a file")
+        ofile = open('tmr.txt', 'w')
+        for row in reader:
+            if any(row):
+                if name.lower() in row[3].lower():
+                    cnt += 1
+                    ofile.write(f'{cnt}) {row[3]}\t{row[2]}\t{row[1]}\n')
+        ofile.close()
+        await ctx.send(file=discord.File('tmr.txt'))
+
+
+@client.command()
+async def search2(ctx, *, name):
+    reader = csv.reader(open('d2.csv', 'r'), delimiter=',')
+    cnt = 0
+    tmr = False
+    for row in reader:
+        if any(row):
+            if name.lower() in row[4].lower():
+                cnt += 1
+                if cnt == 1:
+                    await ctx.send(f'Here you go:\n')
+                await ctx.send(f'{cnt}) {row[1]}\t{row[2]}\t{row[3]}\t{row[4]}')
+                if cnt == 10:
+                    tmr = True
+                    break
+
+    await ctx.send(f'Found {cnt} results!!!')
+    if tmr == True:
+        await ctx.send("Uploading more in a file")
+        ofile = open('tmr2.txt', 'w')
+        for row in reader:
+            if any(row):
+                if name.lower() in row[4].lower():
+                    cnt += 1
+                    ofile.write(f'{cnt}) {row[1]}\t{row[2]}\t{row[3]}\t{row[4]}\n')
+        ofile.close()
+        await ctx.send(file=discord.File('tmr2.txt'))
+
+@client.command()
+async def search3(ctx, *, name):
+    reader = csv.reader(open('d3.csv', 'r'), delimiter=',')
+    cnt = 0
+    tmr = False
+    for row in reader:
+        if any(row):
+            if name.lower() in row[4].lower():
+                cnt += 1
+                if cnt == 1:
+                    await ctx.send(f'Here you go:\n')
+                await ctx.send(f'{cnt}) {row[1]}\t{row[2]}\t{row[3]}\t{row[4]}')
+                if cnt == 10:
+                    tmr = True
+                    break
+
+    await ctx.send(f'Found {cnt} results!!!')
+    if tmr == True:
+        await ctx.send("Uploading more in a file")
+        ofile = open('tmr3.txt', 'w')
+        for row in reader:
+            if any(row):
+                if name.lower() in row[4].lower():
+                    cnt += 1
+                    ofile.write(f'{cnt}) {row[1]}\t{row[2]}\t{row[3]}\t{row[4]}\n')
+        ofile.close()
+        await ctx.send(file=discord.File('tmr3.txt'))
+
+@client.command()
+async def search4(ctx, *, name):
+    reader = csv.reader(open('d4.csv', 'r'), delimiter=',')
+    cnt = 0
+    tmr = False
+    for row in reader:
+        if any(row):
+            if name.lower() in row[4].lower():
+                cnt += 1
+                if cnt == 1:
+                    await ctx.send(f'Here you go:\n')
+                await ctx.send(f'{cnt}) {row[1]}\t{row[2]}\t{row[3]}\t{row[4]}')
+                if cnt == 10:
+                    tmr = True
+                    break
+
+    await ctx.send(f'Found {cnt} results!!!')
+    if tmr == True:
+        await ctx.send("Uploading more in a file")
+        ofile = open('tmr4.txt', 'w')
+        for row in reader:
+            if any(row):
+                if name.lower() in row[4].lower():
+                    cnt += 1
+                    ofile.write(f'{cnt}) {row[1]}\t{row[2]}\t{row[3]}\t{row[4]}\n')
+        ofile.close()
+        await ctx.send(file=discord.File('tmr4.txt'))
+
    
 @client.command()
 async def map(ctx):
@@ -114,9 +228,37 @@ async def ub(ctx, *, query):
     query = query.strip().replace(' ', '%20')
     await ctx.send(f'https://www.urbandictionary.com/define.php?term={query}')
 @client.command()
-async def gs(ctx, *, query):
-    query = query.strip().replace(' ', '%20')
-    await ctx.send(f'https://www.google.com/search?q={query}')
+async def gs(ctx, x=5, *, query):
+    query = query.strip()
+    for j in search(query, tld="co.in", num=10, stop=x, pause=0): 
+        await ctx.send(f'{j}')
+
+@client.event
+async def on_member_join(member):
+    print ("{} joined!".format(member.name))
+    print (f'{member.guild.name}')
+    await member.send("Welcome!")
+ 
+    role = member.guild.roles
+    # member.guild.roles returns an object of type <class 'list'>
+ 
+    if member.guild and not member.bot:
+        async with member.typing():
+            embed = discord.Embed(
+                title="Hoşgeldin!",
+                colour=discord.Colour.blue(),
+            )
+            embed.set_thumbnail(
+                url="https://cdn.discordapp.com/avatars/649985273249398784/493fe440660d331687e426ba976da8f4.webp?size=1024")
+            embed.add_field(name="something",
+                            value="**TEXT**",
+                            inline=False)
+            embed.add_field(name="TEXT",
+                            value="TEXT")
+            embed.set_footer(text="© @MakufonSkifto#0432")
+            await member.send(embed=embed)
+
+
 @client.command()
 async def help(ctx, *, com=None):
     if com == None:
@@ -129,10 +271,14 @@ async def help(ctx, *, com=None):
                         +"news: latest updates from http://www.dtu.ac.in\n"
                         +"mnews: more updates\n"
                         +"ping : pong!\n"
-                        +"search : searches a user in 2k19 database\n"
+                        +"search1 : searches a student in 2k19 database\n"
+                        +"search2 : searches a student in 2k18 database\n"
+                        +"search3 : searches a student in 2k17 database\n"
+                        +"search4 : searches a student in 2k16 database\n"
+                        +"cg : shows first sem SGPA of 2k19 batch students\n"
                         +"wiki <query> : shows wikipedia page for query\n"
                         +"ub <query> : shows urban dictionary page for query\n"
-                        +"gs <query> : shows google search link for query\n"
+                        +"gs <x> <query> : shows <x> google search results for query\n"
                         +"Type .help <command> for more usage info```")
     else:
         if com.lower() == '8ball':
@@ -146,7 +292,7 @@ async def help(ctx, *, com=None):
         if com.lower() == 'map':
             await ctx.send("``.map : shows DTU map``")
         if com.lower() == 'news':
-            await ctx.send("``.news <x> : shows x recent updates from http://www.dtu.ac.in (Default:5)``") 
+            await ctx.send("``.news <x> : shows x recent updates from http://www.dtu.ac.in (Default:5)``")
         if com.lower() == 'mnews':
             await ctx.send("``.mnews <x> : shows more updates (see: .help news)``")
         if com.lower() == 'ping':
@@ -156,8 +302,16 @@ async def help(ctx, *, com=None):
         if com.lower() == 'ub':
             await ctx.send("``ub <query> : shows urban dictionary page for query``")
         if com.lower() == 'gs':
-            await ctx.send("``gs <query> : shows google search link for query``")
+            await ctx.send("``gs <x> <query>: shows <x> google search result for query``")
         if com.lower() == 'search':
             await ctx.send("``.search <name> : searches for a student in the 2k19 BTech batch``")
+        if com.lower() == 'search2':
+            await ctx.send("``.search2 <name> : searches for a student in the 2k18 BTech batch``")
+        if com.lower() == 'search3':
+            await ctx.send("``.search3 <name> : searches for a student in the 2k17 BTech batch``")
+        if com.lower() == 'search4':
+            await ctx.send("``.search4 <name> : searches for a student in the 2k16 BTech batch``")
+        if com.lower() == 'cg':
+            await ctx.send("``.cg <name> : shows first sem SGPA and other details of 2K19 batch students.``")
 
 client.run(TOKEN)
