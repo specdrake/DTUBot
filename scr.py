@@ -4,11 +4,6 @@ from bs4 import BeautifulSoup
 url = "http://dtu.ac.in"
 r = requests.get(url)
 soup = BeautifulSoup(r.content, 'html5lib')
-#with open("dtu2.html", "w") as fi:
-#    fi.write(soup.prettify())
-#    fi.close()
-#html = open("dtu2.html", "r").read()
-#soup = BeautifulSoup(html, 'html5lib')
 links = soup.find_all(id='tab4')[0].find_all('a')
 file = open('tlnk.txt', 'w')
 for link in links:
