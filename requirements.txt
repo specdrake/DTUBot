@@ -1,5 +1,5 @@
 discord.py
-requests==2.22.0
+requests==2.31.0
 bs4==0.0.1
 html5lib==1.0.1
 dnspython==1.16.0
